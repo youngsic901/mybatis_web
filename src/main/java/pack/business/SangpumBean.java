@@ -3,6 +3,6 @@ package pack.business;
 import lombok.Data;
 
 @Data
-public class SangpumDto {
+public class SangpumBean {
     private  String code, sang, su, dan;
 }

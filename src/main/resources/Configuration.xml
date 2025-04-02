@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-    <properties resource="pack/mybatis/db.properties" />
+    <properties resource="db.properties" />
 
     <typeAliases>   <!-- 별명 사용 -->
         <typeAlias type="pack.business.SangpumDto" alias="dto" />
@@ -23,6 +23,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="pack/mybatis/DataMapper.xml" />
+        <mapper resource="DataMapper.xml" />
     </mappers>
 </configuration>

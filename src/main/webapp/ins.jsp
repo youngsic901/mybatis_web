@@ -10,7 +10,7 @@ request.setCharacterEncoding("utf-8");
 <jsp:useBean id="processDao" class="pack.business.ProcessDao" />
 
 <%
-processDao.insertData(bean);	// MyBatis를 호출
+processDao.insData(bean);	// MyBatis를 호출
 
 response.sendRedirect("list.jsp");
 %>

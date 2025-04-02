@@ -1,35 +1,31 @@
-package pack;
+package pack.business;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import pack.mybatis.SqlMapConfig;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProcessDao { // 비즈니스 로직
-    private static ProcessDao processDao = new ProcessDao();
-    public static ProcessDao getInstance() {
-        return processDao;
-    }
-
+public class ProcessDao { // Business logic ==> 웹에서 사용하므로 싱글톤 객체 필요 없음
     private SqlSessionFactory sqlSessionFactory = SqlMapConfig.getSqlSession();
 
-    public List<DataDto> selectDataAll() throws SQLException { // 전체 자료 읽기
+    public List<SangpumDto> selectDataAll() throws SQLException { // 전체 자료 읽기
         // SqlSession : DataMapper.xml에 정의된 id에 접근 가능
         SqlSession sqlSession = sqlSessionFactory.openSession(); // sqlSession 객체 생성 후 열기
-        List<DataDto> list = sqlSession.selectList("selectDataAll");
+        List<SangpumDto> list = sqlSession.selectList("selectDataAll");
         sqlSession.close();
         return list;
     }
 
-    public DataDto selectDataPart(String code) throws SQLException { // 부분 자료 읽기
+    public SangpumDto selectDataPart(String code) throws SQLException { // 부분 자료 읽기
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        DataDto dto = sqlSession.selectOne("selectDataByCode", code);
+        SangpumDto dto = sqlSession.selectOne("selectDataByCode", code);
         sqlSession.close();
         return dto;
     }
 
-    public void insData(DataBean bean) throws SQLException {
+    public void insData(SangpumBean bean) throws SQLException {
         /*
         SqlSession sqlSession = sqlSessionFactory.openSession(); // 수동 commit : transaction
         sqlSession.insert("insertData", bean);
@@ -41,7 +37,7 @@ public class ProcessDao { // 비즈니스 로직
         sqlSession.close();
     }
 
-    public void upData(DataBean bean) throws SQLException {
+    public void upData(SangpumBean bean) throws SQLException {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         sqlSession.update("updateData", bean);
         sqlSession.commit();
